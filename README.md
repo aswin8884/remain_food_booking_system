@@ -32,7 +32,7 @@ This project is a Django-based web application designed to minimize food waste a
 
 2. **Navigate to the project directory**:
    ```bash
-   cd food-waste-reduction-platform
+   cd remain_food_booking_system
    ```
 
 3. **Install dependencies**:
