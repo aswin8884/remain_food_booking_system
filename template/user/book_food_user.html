@@ -1,0 +1,121 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+
+<style>
+
+  .checkout-container {
+    max-width: 1280px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .food-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .food-image {
+    flex: 1;
+    max-width: 360px;
+    height: 360px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .food-details {
+    flex: 3;
+  }
+
+  .food-name {
+    font-size: 48px;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+  }
+  .food-quantity {
+    font-size: 36px;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+  }
+
+  .food-price {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #433c3c;
+    margin: 0 0 15px 0;
+  }
+
+  .checkout-btn {
+    text-align: right;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  @media (max-width: 768px) {
+    .checkout-container {
+      width: 90%;
+      padding: 10px;
+    }
+
+    .food-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .food-image {
+      width: 100%;
+      height: auto;
+      margin: 0 0 15px 0;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<section class="checkout_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>Order Details</h2>
+    </div>
+
+    <div class="checkout-container">
+      <div class="food-item">
+        <img src="./static/media/{{booking.food_id.food_image}}" alt="Food Image" class="food-image">
+        <div class="food-details">
+          <h1 class="food-name">{{booking.food_id.food_name}}</h1>
+          <h1 class="food-quantity">Quantity : {{booking.quantity}}<h1>
+          <p class="food-price">Total Price : {{booking.price}} RS/-</p>
+          <div class="checkout-btn">
+            <a href="/payment_page_user?id={{booking.id}}"><button class="btn btn-success">Pay Now</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

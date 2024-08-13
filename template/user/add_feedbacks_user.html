@@ -1,0 +1,48 @@
+
+{% extends 'user/user_base.html' %}
+{% block content %}
+
+<style>
+    .rating{
+
+        border: none;
+    }
+</style>
+
+    <section class="book_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div style="margin-left: 300px;" class="col-md-6">
+              <div class="form_container" style="border: 0.2px solid #ddd; padding: 40px; border-radius: 2em;">
+                <div class="heading_container">
+                  <h2>
+                    Your Feedback
+                  </h2>
+                </div>
+              <div class="form_container">
+                <form method="post">
+                    {% csrf_token %}
+                    <textarea class="form-control" name="feedback" id=""></textarea>
+                    <h1>Give Us A Rating</h1>
+                    <select name="rating" class="rating">
+                         <option value="1">⭐</option>
+                         <option value="2">⭐⭐</option>
+                         <option value="3">⭐⭐⭐</option>
+                         <option value="4">⭐⭐⭐⭐</option>
+                         <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+            
+                    <button style="margin-left: 150px;" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end book section -->
+    {% endblock %}

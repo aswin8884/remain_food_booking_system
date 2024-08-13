@@ -1,0 +1,64 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">View Foods From Restaurants</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr> 
+                              <th>Food Name</th>
+                              <th>Food Image</th>
+                              <th>User Name</th>
+                              <th>Quantity</th>
+                              <th>Total Price</th>
+                              <th>Booked on</th>
+                              <th>Payment Status</th>
+                    
+                            </tr>
+                    
+                            {% for b in bookings %}
+    
+                            <tr>
+                                <td>{{b.food_id.food_name}}</td>
+                                <td><img src="../static/media/{{b.food_id.food_image}}" height="200px" width="200px" alt=""></td>
+                                <td>{{b.name}}</td>
+                                <td>{{b.quantity}}</td>
+                                <td>{{b.price}}</td> 
+                                <td>{{b.booked_on}}</td>
+                                {% if b.payment_status %}
+                                <td>Payment Recived</td>
+                                {% else %}
+                                <td>Payment Pending</td>
+                                {% endif %}                       
+                        
+                              </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

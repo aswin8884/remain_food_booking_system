@@ -1,0 +1,87 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Restuarants Requests</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Restaurent Name</th>
+                              <th>Owner</th>
+                              <th>Address</th>
+                              <th>Contact</th>
+                              <th>Email</th>
+                              <th>Opening Hours</th>
+                              <th>Location</th>
+                              <th>Id proof</th>
+                              <th>Licence</th>
+                              <th>Restaurent Image</th>
+                              <th>Kitchen Image</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% for r in restaurants %}
+                            <tr>
+                               <td>{{r.restaurant_name}}</td>
+                               <td>{{r.owner_name}}</td>
+                               <td>{{r.location}}</td>
+                               <td>{{r.contact}}</td>
+                               <td>{{r.email}}</td>
+                               <td>{{r.opening_time}} <br> to <br> {{r.closing_time}}</td>
+                                <td><iframe src="{{r.map_link}}" frameborder="0"></iframe></td>
+                                <td><a href="../static/media/{{r.id_proof}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Id Proof
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{r.restaurant_license}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">License
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{r.r_image}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Restaurant Image
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{r.rk_image}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Kitchen Image
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+
+
+                                {% if r.approved == False %}
+                                <td><a href="accept_restaurants?id={{r.id}}"><button class="btn btn-success btn-rounded btn-fw">Approve</button></a></td>
+                                <td><a href="reject_restaurants?id={{r.id}}"><button class="btn btn-danger btn-rounded btn-fw">Reject</button></a></td>
+                                {% elif r.approved == True %}
+                                <td>Approved</td>
+                                {% endif %}
+
+                        
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

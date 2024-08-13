@@ -1,0 +1,61 @@
+
+{% extends "admin/admin_base.html" %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Total Foods Recived Today</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- <form method="get" action="">
+                                    <div class="form-group row">
+                                        <label for="query" class="col-sm-2 col-form-label">Search Food</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="query" name="query" value="{{ request.GET.query }}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </div>
+                                    </div>
+                                </form> -->
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Food Name</th>
+                                                <th>Food Image</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for food in combined_foods %}
+                                            <tr>
+                                                <td>{{ food.food_name }}</td>
+                                                <td><img src="../static/media/{{food.food_image}}" height="100px" width="100px" alt=""></td>
+                                                <td>{{ food.quantity }}</td>
+                                                <td>{{ food.price }} RS/- per pice</td>
+                                                <td><a href="upload_food_admin?id={{food.id}}"><button class="btn btn-primary btn-rounded btn-fw">Sell</button></a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {% if messages %}
+                                {% for m in messages %}
+                                <script>alert("{{ m }}")</script>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

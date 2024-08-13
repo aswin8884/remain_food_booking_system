@@ -1,0 +1,74 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Caters Food Requests</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr> 
+                              <th>Food Name</th>
+                              <th>Food Image</th>
+                              <th>Quantity</th>
+                              <th>Per Price</th>
+                              <th>Total Price</th>
+                              <th>Uploaded Time</th>
+                              <th>Status</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% for f in foods %}
+    
+                            <tr>
+                                <td>{{f.food_name}}</td>
+                                <td><img src="../static/media/{{f.food_image}}" height="200px" width="200px" alt=""></td>
+                                <td>{{f.quantity}}</td>
+                                <td>{{f.price}}</td> 
+                                <td>{{f.total_price}}</td> 
+                                <td>{{f.uploaded_time}}</td> 
+                                {% if f.accepted == 'Accepted' %}
+                                <td>Accepted</td>
+                                {% if f.payment_status == False %}
+                                <td><a href="payment_caters_food?id={{f.id}}"><button class="btn btn-primary btn-rounded btn-fw">Paynow</button></a></td>
+                                {% else %}
+                                <td>Payment Sucessful</td>
+                                {% endif %}
+                                {% elif f.accepted == 'Pending' %}
+                                <td>Not approved</td>
+                                <td><a href="accept_caters_food_request?id={{f.id}}"><button class="btn btn-success btn-rounded btn-fw">Accept</button></a></td>
+                                <td><a href="reject_caters_food_request?id={{f.id}}"><button class="btn btn-danger btn-rounded btn-fw">Reject</button></a></td>
+                                {% elif f.accepted == 'Rejected' %}
+                                <td>Rejected</td>
+                                <td>You Rejected The Order</td>
+                                
+                              {% endif %}
+                              </tr>
+                            {% endfor %}
+                            
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

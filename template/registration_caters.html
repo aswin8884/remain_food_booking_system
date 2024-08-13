@@ -1,0 +1,71 @@
+{% extends "common_base.html" %}
+{% block content %}
+<!-- book section -->
+<section class="book_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div style="margin-left: 300px;" class="col-md-6">
+        <div class="form_container" style="border: 0.2px solid #ddd; padding: 40px; border-radius: 2em;">
+          <div class="heading_container">
+            <h2>
+              Caters Registration
+            </h2>
+          </div>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+              <input type="text" class="form-control" name="owner_name" placeholder="Owner Name" />
+            </div>
+            <div>
+              <input type="text" class="form-control" name="caters_name" placeholder="Catering Service Name" />
+            </div>
+            <div>
+              <input type="text" class="form-control" name="address" placeholder="Address" />
+            </div>
+            <div>
+              <input type="text" class="form-control" name="map_link" placeholder="Google Map Link" />
+            </div>
+            <div>
+              <input type="number" class="form-control" name="contact" placeholder="Contact Number(Caters or Owner's)" />
+            </div>
+            <div>
+              <input type="email" class="form-control" name="email" placeholder="Your Restaurant Email (Caters or Owner's)" />
+            </div>
+            <div>
+              <input type="password" class="form-control" name="password" placeholder="Your Password" />
+            </div>
+            <label>Catering Service Licence</label>
+            <div>
+              <input type="file" class="form-control" name="caters_license" placeholder="Your Catering License" />
+            </div>
+            <label>Id Proof Owners(any)</label>
+            <div>
+              <input type="file" class="form-control" name="id_proof" placeholder="Your Id Proof (any)" />
+            </div>
+            <label>Godown Image</label>
+            <div>
+              <input type="file" class="form-control" name="cg_image" placeholder="Your Godown Image" />
+            </div>
+            <label>Kitchen Image (latest)</label>
+            <div>
+              <input type="file" class="form-control" name="ck_image" placeholder="Kitchen Image" />
+            </div>
+            <div style="margin-left: 150px;" class="btn_box">
+              <button type="submit">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end book section -->
+{% if messages %}
+{% for m in messages %}
+<script>alert("{{m}}")</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

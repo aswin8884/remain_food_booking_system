@@ -1,0 +1,62 @@
+{% extends "caters/caters_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">View Food Added Details</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr> 
+                              <th>Food Name</th>
+                              <th>Food Image</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>Uploaded Time</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </tr>
+                            {% for f in foods %}
+    
+                            <tr>
+                                <td>{{f.food_name}}</td>
+                                <td><img src="../static/media/{{f.food_image}}" height="200px" width="200px" alt=""></td>
+                                <td>{{f.quantity}}</td>
+                                <td>{{f.price}}</td> 
+                                <td>{{f.uploaded_time}}</td> 
+                                {% if f.accepted == True %}
+                                <td>Accepted</td>
+                                <td>Our delivery Agents will come and pick your food soon...  </td>
+                                {% elif f.accepted == False  %}        
+                                <td>Pending</td>   
+                                <td><a href="cancel_food_restaurant?id={{f.id}}"><button class="btn btn-danger btn-rounded btn-fw">Cancel</button></a></td>
+                                {% endif %}     
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

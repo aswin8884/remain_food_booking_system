@@ -1,0 +1,85 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Caters Requests</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Caters Name</th>
+                              <th>Owner</th>
+                              <th>Address</th>
+                              <th>Contact</th>
+                              <th>Email</th>
+                              <th>Location</th>
+                              <th>Id proof</th>
+                              <th>Licence</th>
+                              <th>Godown Image</th>
+                              <th>Kitchen Image</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% for c in caters %}
+                            <tr>
+                               <td>{{c.caters_name}}</td>
+                               <td>{{c.owner_name}}</td>
+                               <td>{{c.address}}</td>
+                               <td>{{c.contact}}</td>
+                               <td>{{c.email}}</td>
+                                <td><iframe src="{{c.map_link}}" frameborder="0"></iframe></td>
+                                <td><a href="../static/media/{{c.id_proof}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Id Proof
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{c.caters_license}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">License
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{c.cg_image}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Godown Image
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+                                <td><a href="../static/media/{{c.cg_image}}">
+                                <button type="button" class="btn btn-outline-info btn-icon-text">Kitchen Image
+                                <i class="ti-printer btn-icon-append">
+                                </i></button></a></td>
+
+
+                                {% if c.approved == False %}
+                                <td><a href="accept_caters?id={{c.id}}"><button class="btn btn-success btn-rounded btn-fw">Approve</button></a></td>
+                                <td><a href="reject_caters?id={{c.id}}"><button class="btn btn-danger btn-rounded btn-fw">Reject</button></a></td>
+                                {% elif c.approved == True %}
+                                <td>Approved</td>
+                                {% endif %}
+
+                        
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,68 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">View Foods From Restaurants</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr> 
+                              <th>Food Name</th>
+                              <th>Food Image</th>
+                              <th>Restuarant Name</th>
+                              <th>Quantity</th>
+                              <th>Total Price</th>
+                              <th>Booked on</th>
+                              <th>Payment Status</th>
+                              <th>Action</th>
+                    
+                            </tr>
+                    
+                            {% for b in booking %}
+                            {% if b.admin_uploaded != True %}
+    
+                            <tr>
+                                <td>{{b.restaurant_food_id.food_name}}</td>
+                                <td><img src="../static/media/{{b.restaurant_food_id.food_image}}" height="200px" width="200px" alt=""></td>
+                                <td>{{b.restaurant_food_id.restaurant_id.restaurant_name}}</td>
+                                <td>{{b.restaurant_food_id.quantity}}</td>
+                                <td>{{b.restaurant_food_id.total_price}}</td> 
+                                <td>{{b.booked_date}}</td>
+                                <td>{{b.payment_status}}</td>
+                                <td>
+                                  <a href="add_food_admin_restaurant?id={{ b.id }}" class="btn btn-primary">
+                                    Sell
+                                  </a>
+                                </td>                              
+                        
+                              </tr>
+                              {% endif %}
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

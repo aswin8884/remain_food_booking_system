@@ -1,0 +1,60 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">View Restaurants</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Caters Name</th>
+                              <th>Owner Name</th>
+                              <th>Open Hours</th>
+                              <th>Contact</th>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Location</th>
+                              <th>Action</th>
+                            </tr>
+                            {% for r in restaurants %}
+    
+                            <tr>
+                                <td>{{r.restaurant_name}}</td>
+                                <td>{{r.owner_name}}</td>
+                                <td>{{r.opening_time}} <br> to <br>{{r.closing_time}}</td>
+                                <td>{{r.contact}}</td>
+                                <td>{{r.email}}</td>
+                                <td>{{r.location}}</td>
+                                <td><iframe src="{{r.map_link}}" frameborder="0"></iframe></td>
+                            
+                                <td><a href="delete_restaurants?id={{r.id}}"><button class="btn btn-danger btn-rounded btn-fw">Remove</button></a></td>
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

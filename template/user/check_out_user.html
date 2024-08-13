@@ -1,0 +1,35 @@
+
+{% extends 'user/user_base.html' %}
+{% block content %}
+
+    <section class="book_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div style="margin-left: 300px;" class="col-md-6">
+              <div class="form_container" style="border: 0.2px solid #ddd; padding: 40px; border-radius: 2em;">
+                <div class="heading_container">
+                  <h2>
+                    Fill Details
+                  </h2>
+                </div>
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+              <div class="form_container">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                    <input type="text" class="form-control" name="address" placeholder="Your Address" required>
+                    <input type="number" class="form-control" name="contact" placeholder="Your Contact" required>
+                    <input type="number" class="form-control" name="quantity" min="1" placeholder="Quantity You Want" required>
+                    <button style="margin-left: 150px;" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end book section -->
+    {% endblock %}

@@ -1,0 +1,51 @@
+{% extends "admin/admin_base.html"  %}
+{% block content %}
+  <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">View Users</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr> 
+                              <th>Name</th>
+                              <th>Contact</th>
+                              <th>Email</th>
+                              <th>Action</th>
+                            </tr>
+                            {% for u in users %}
+    
+                            <tr>
+                                <td>{{u.name}}</td>
+                                <td>{{u.contact}}</td>
+                                <td>{{u.email}}</td>           
+                                <td><a href="delete_users?id={{u.id}}"><button class="btn btn-danger btn-rounded btn-fw">Remove</button></a></td>
+                            </tr>
+                            {% endfor %}
+                            
+        {% if messages %}
+        {% for m in messages %}
+        <script>alert("{{m}}")</script>
+        {% endfor %}
+        {% endif %}
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
